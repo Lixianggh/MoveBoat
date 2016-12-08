@@ -38,6 +38,11 @@ class Bar extends egret.Sprite{
 	}
 	
 	public setState(state:number){
+    	  if(state == 0){
+            this.backImage.texture = RES.getRes('');
+    	  }else{
+            this.backImage.texture = RES.getRes(this.imageName);
+    	  }
 	    this.state = state;
 	}
 	

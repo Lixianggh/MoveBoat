@@ -7,11 +7,11 @@ var Admin = (function (_super) {
     __extends(Admin, _super);
     function Admin() {
         _super.call(this);
+        //注册侦听
+        this.gameOver = new GameOver(GameOver.DATE);
         this.goNum = 0;
         this.leftRoad = 1000;
         this.RightRoad = 1000;
-        this.leftBoat = 0;
-        this.rightBoat = 0;
         this.timer = new egret.Timer(10, 0);
         this.timer.addEventListener(egret.TimerEvent.TIMER, this.timerFunc, this);
         this.timer.addEventListener(egret.TimerEvent.TIMER_COMPLETE, this.timerComFunc, this);
@@ -94,22 +94,22 @@ var Admin = (function (_super) {
     };
     p.rightTouch = function () {
         if (this.redBoat.x == 324) {
-            this.redBoat.x = 476;
-            this.rightBoat = 1;
+            var tw = egret.Tween.get(this.redBoat);
+            tw.to({ x: 476 }, 200);
         }
-        else {
-            this.redBoat.x = 324;
-            this.rightBoat = 0;
+        else if (this.redBoat.x == 476) {
+            var tw = egret.Tween.get(this.redBoat);
+            tw.to({ x: 324 }, 200);
         }
     };
     p.leftTouch = function () {
         if (this.blueBoat.x == 0) {
-            this.blueBoat.x = 156;
-            this.leftBoat = 1;
+            var tw = egret.Tween.get(this.blueBoat);
+            tw.to({ x: 156 }, 200);
         }
-        else {
-            this.blueBoat.x = 0;
-            this.leftBoat = 0;
+        else if (this.blueBoat.x == 156) {
+            var tw = egret.Tween.get(this.blueBoat);
+            tw.to({ x: 0 }, 200);
         }
     };
     p.work = function () {
@@ -136,6 +136,7 @@ var Admin = (function (_super) {
                         this.leftRoad = 0;
                         //左路可添加
                         var type = Math.floor(Math.random() * 2) + 1;
+                        bar.setType(type);
                         if (type == 1) {
                             //左路石头
                             bar.setImage('blueBox_png');
@@ -169,6 +170,7 @@ var Admin = (function (_super) {
                         this.RightRoad = 0;
                         //右路可添加
                         var type = Math.floor(Math.random() * 2) + 1;
+                        bar.setType(type);
                         if (type == 1) {
                             //右路石头
                             bar.setImage('redBox_png');
@@ -195,6 +197,7 @@ var Admin = (function (_super) {
                     }
                 }
             }
+            // 移动
             var road = bar.getRoad();
             if ((road == 1 && this.boatState == 1) || (road == 2 && this.boatState == 2)) {
                 bar.y = bar.y - this.addUp;
@@ -209,54 +212,149 @@ var Admin = (function (_super) {
                 }
             }
             //碰撞判断
-            console.log(this.blueBoat.y);
-            var barState = bar.getState();
-            var barRoad = bar.getRoad();
-            var barType = bar.getType();
-            if (barState == 1 && barType != 1) {
-                //the bar is work AND is not heart
-                if (this.boatState == 1 && barRoad == 1) {
-                    if (bar.y < 250 && bar.y > -30) {
-                        //在范围内，判断障碍在哪边,船在哪边
-                        if (((bar.x < 156) && this.leftBoat == 0) || ((bar.x >= 156) && this.leftBoat == 1)) {
-                            //bar at left and boat in left OR bar at right and boat in right ! is not heart
-                            alert('lost');
-                        }
-                    }
-                }
-                else if (this.boatState == 2 && barRoad == 2) {
-                    if (bar.y < 250 && bar.y > 50) {
-                        if ((bar.x > 320 && bar.x < 476 && this.rightBoat == 0) || (bar.x >= 476) && this.rightBoat == 1) {
-                            alert('lost');
-                        }
-                    }
-                }
-                else {
-                    if (bar.y > 750 && bar.y < 1030) {
-                        //bar is in pong
-                        if (barRoad == 1) {
-                            if (((bar.x < 156) && this.leftBoat == 0) || ((bar.x >= 156) && this.leftBoat == 1)) {
-                                //bar at left and boat in left OR bar at right and boat in right ! is not heart
-                                alert('lost');
+            var barType = bar.getType(); //heart or box
+            var barRoad = bar.getRoad(); //blue or red
+            if (state == 1) {
+                if (barRoad == 1) {
+                    if (this.boatState == 1) {
+                        if (bar.x == 38 && this.blueBoat.x < 118 && bar.y < 250 && bar.y > -30) {
+                            if (barType == 1) {
+                                console.log("top blue left box");
+                                this.lose();
+                            }
+                            else {
+                                bar.setState(0);
                             }
                         }
-                        else {
-                            if ((bar.x > 320 && bar.x < 476 && this.rightBoat == 0) || (bar.x >= 476) && this.rightBoat == 1) {
-                                alert('lost');
+                        else if (bar.x == 194 && this.blueBoat.x > 38 && this.blueBoat.x < 274 && bar.y < 250 && bar.y > -30) {
+                            if (barType == 1) {
+                                console.log("top blue left box");
+                                this.lose();
+                            }
+                            else {
+                                bar.setState(0);
+                            }
+                        }
+                    }
+                    else {
+                        if (bar.x == 38 && this.blueBoat.x < 118 && bar.y < 1030 && bar.y > 760) {
+                            if (barType == 1) {
+                                console.log("top blue left box");
+                                this.lose();
+                            }
+                            else {
+                                bar.setState(0);
+                            }
+                        }
+                        else if (bar.x == 194 && this.blueBoat.x > 38 && this.blueBoat.x < 274 && bar.y < 1030 && bar.y > 760) {
+                            if (barType == 1) {
+                                console.log("top blue left box");
+                                this.lose();
+                            }
+                            else {
+                                bar.setState(0);
+                            }
+                        }
+                    }
+                }
+                else if (barRoad == 2) {
+                    if (this.boatState == 2) {
+                        if (bar.x == 358 && this.redBoat.x < 438 && bar.y < 250 && bar.y > -30) {
+                            if (barType == 1) {
+                                console.log("top blue left box");
+                                this.lose();
+                            }
+                            else {
+                                bar.setState(0);
+                            }
+                        }
+                        else if (bar.x == 514 && this.redBoat.x > 358 && this.redBoat.x < 594 && bar.y < 250 && bar.y > -30) {
+                            if (barType == 1) {
+                                console.log("top blue left box");
+                                this.lose();
+                            }
+                            else {
+                                bar.setState(0);
+                            }
+                        }
+                    }
+                    else {
+                        if (bar.x == 358 && this.redBoat.x < 438 && bar.y < 1030 && bar.y > 760) {
+                            if (barType == 1) {
+                                console.log("top blue left box");
+                                this.lose();
+                            }
+                            else {
+                                bar.setState(0);
+                            }
+                        }
+                        else if (bar.x == 514 && this.redBoat.x > 358 && this.redBoat.x < 594 && bar.y < 1030 && bar.y > 760) {
+                            if (barType == 1) {
+                                console.log("top blue left box");
+                                this.lose();
+                            }
+                            else {
+                                bar.setState(0);
                             }
                         }
                     }
                 }
             }
+            var newBarState = bar.getState();
+            if (newBarState == 1) {
+                if (barType == 2) {
+                    if (this.boatState == 1) {
+                        if (bar.x < 310) {
+                            if (bar.y < 0) {
+                                console.log("heart out top");
+                                this.lose();
+                            }
+                        }
+                        else {
+                            if (bar.y > 1000) {
+                                console.log("heart out down");
+                                this.lose();
+                            }
+                        }
+                    }
+                    else if (this.boatState == 2) {
+                        if (bar.x > 310) {
+                            if (bar.y < 0) {
+                                console.log("heart out top");
+                                this.lose();
+                            }
+                        }
+                        else {
+                            if (bar.y > 1000) {
+                                console.log("heart out down");
+                                this.lose();
+                            }
+                        }
+                    }
+                    else {
+                        if (bar.y > 1000) {
+                            console.log("heart out down");
+                            this.lose();
+                        }
+                    }
+                }
+            }
         }
-        var add = Math.floor(this.goNum / 2500);
-        //        console.log(this.addUp);
-        if (this.addUp < 15 && this.addUp < add) {
-            this.addUp = Math.floor(this.goNum / 2500);
+        var addup = this.goNum / 1000 - 5 + this.speedUp;
+        if (this.addUp < 15 && this.addUp < addup) {
+            this.addUp = addup;
         }
     };
     p.timerComFunc = function () {
         console.log("计时结束");
+    };
+    p.lose = function () {
+        this.timer.stop();
+        this.blueBoat.touchEnabled = false;
+        this.redBoat.touchEnabled = false;
+        this.gameOver._type = this.speedUp;
+        this.gameOver._goNum = this.goNum;
+        this.dispatchEvent(this.gameOver);
     };
     p.setValue = function (state, speedUp) {
         this.boatState = state;

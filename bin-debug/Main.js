@@ -68,6 +68,20 @@ var Main = (function (_super) {
             this.loadingView.setProgress(event.itemsLoaded, event.itemsTotal);
         }
     };
+    //GameOver
+    p.getData = function (evt) {
+        this.lose = new Lose();
+        this.lose.width = 640;
+        this.lose.height = 1080;
+        this.lose.x = 0;
+        this.lose.y = 0;
+        this.stage.addChild(this.lose);
+        this.lose.beginBtn.addEventListener(egret.TouchEvent.TOUCH_TAP, this.goAgain, this);
+    };
+    p.goAgain = function () {
+        this.stage.removeChild(this.lose);
+        this.createGameScene();
+    };
     /**
      * 创建游戏场景
      * Create a game scene
@@ -85,6 +99,7 @@ var Main = (function (_super) {
         this.welcom.herdBtn.addEventListener(egret.TouchEvent.TOUCH_TAP, this.herdTouch, this);
         this.welcom.medioBtn.addEventListener(egret.TouchEvent.TOUCH_TAP, this.medioTouch, this);
         this.welcom.easyBtn.addEventListener(egret.TouchEvent.TOUCH_TAP, this.easyTouch, this);
+        this.admin.addEventListener(GameOver.DATE, this.getData, this);
     };
     p.herdTouch = function (evt) {
         this.welcom.end();

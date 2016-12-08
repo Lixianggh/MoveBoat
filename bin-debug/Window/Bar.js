@@ -25,6 +25,12 @@ var Bar = (function (_super) {
         return this.imageName;
     };
     p.setState = function (state) {
+        if (state == 0) {
+            this.backImage.texture = RES.getRes('');
+        }
+        else {
+            this.backImage.texture = RES.getRes(this.imageName);
+        }
         this.state = state;
     };
     p.setType = function (type) {

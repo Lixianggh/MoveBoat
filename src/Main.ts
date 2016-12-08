@@ -7,6 +7,7 @@ class Main extends egret.DisplayObjectContainer {
     private loadingView:LoadingUI;
     private admin:Admin;
     private welcom:Welcom;
+    private lose:Lose;
 
     public constructor() {
         super();
@@ -84,7 +85,22 @@ class Main extends egret.DisplayObjectContainer {
     }
 
     private textfield:egret.TextField;
-
+    //GameOver
+    public getData(evt: GameOver) {
+        this.lose = new Lose();
+        this.lose.width = 640;
+        this.lose.height = 1080;
+        this.lose.x = 0;
+        this.lose.y = 0;
+        this.stage.addChild(this.lose);
+        
+        this.lose.beginBtn.addEventListener(egret.TouchEvent.TOUCH_TAP,this.goAgain,this);
+    }
+    
+    private goAgain(){
+        this.stage.removeChild(this.lose);
+        this.createGameScene();
+    }
     /**
      * 创建游戏场景
      * Create a game scene
@@ -104,6 +120,8 @@ class Main extends egret.DisplayObjectContainer {
         this.welcom.herdBtn.addEventListener(egret.TouchEvent.TOUCH_TAP,this.herdTouch,this);
         this.welcom.medioBtn.addEventListener(egret.TouchEvent.TOUCH_TAP,this.medioTouch,this);
         this.welcom.easyBtn.addEventListener(egret.TouchEvent.TOUCH_TAP,this.easyTouch,this);
+        
+        this.admin.addEventListener(GameOver.DATE,this.getData,this);
     }
     
     private herdTouch(evt: egret.TouchEvent) {
