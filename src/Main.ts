@@ -1,32 +1,3 @@
-//////////////////////////////////////////////////////////////////////////////////////
-//
-//  Copyright (c) 2014-present, Egret Technology.
-//  All rights reserved.
-//  Redistribution and use in source and binary forms, with or without
-//  modification, are permitted provided that the following conditions are met:
-//
-//     * Redistributions of source code must retain the above copyright
-//       notice, this list of conditions and the following disclaimer.
-//     * Redistributions in binary form must reproduce the above copyright
-//       notice, this list of conditions and the following disclaimer in the
-//       documentation and/or other materials provided with the distribution.
-//     * Neither the name of the Egret nor the
-//       names of its contributors may be used to endorse or promote products
-//       derived from this software without specific prior written permission.
-//
-//  THIS SOFTWARE IS PROVIDED BY EGRET AND CONTRIBUTORS "AS IS" AND ANY EXPRESS
-//  OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES
-//  OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED.
-//  IN NO EVENT SHALL EGRET AND CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT,
-//  INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT
-//  LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;LOSS OF USE, DATA,
-//  OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF
-//  LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING
-//  NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE,
-//  EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
-//
-//////////////////////////////////////////////////////////////////////////////////////
-
 class Main extends egret.DisplayObjectContainer {
 
     /**
@@ -34,6 +5,8 @@ class Main extends egret.DisplayObjectContainer {
      * Process interface loading
      */
     private loadingView:LoadingUI;
+    private admin:Admin;
+    private welcom:Welcom;
 
     public constructor() {
         super();
@@ -118,11 +91,40 @@ class Main extends egret.DisplayObjectContainer {
      */
     private createGameScene():void {
         
-        let admin:Admin = new Admin();
-        admin.width = 640;
-        admin.height = 1080;
-        this.stage.addChild(admin);
+        this.admin = new Admin();
+        this.admin.width = 640;
+        this.admin.height = 1080;
+        this.stage.addChild(this.admin);
         
+        this.welcom = new Welcom();
+        this.welcom.width = 640;
+        this.welcom.height = 1080;
+        this.stage.addChild(this.welcom);
+        this.welcom.begin();
+        this.welcom.herdBtn.addEventListener(egret.TouchEvent.TOUCH_TAP,this.herdTouch,this);
+        this.welcom.medioBtn.addEventListener(egret.TouchEvent.TOUCH_TAP,this.medioTouch,this);
+        this.welcom.easyBtn.addEventListener(egret.TouchEvent.TOUCH_TAP,this.easyTouch,this);
+    }
+    
+    private herdTouch(evt: egret.TouchEvent) {
+        this.welcom.end();
+        this.stage.removeChild(this.welcom);
+        //随机数
+        var random: number = Math.floor(Math.random() * 2) + 1;
+        this.admin.setValue(random,10);
+        this.admin.begin();
+    }
+    private medioTouch(evt: egret.TouchEvent) {
+        this.welcom.end();
+        this.stage.removeChild(this.welcom);
+        this.admin.setValue(0,8);
+        this.admin.begin();
+    }
+    private easyTouch(evt: egret.TouchEvent) {
+        this.welcom.end();
+        this.stage.removeChild(this.welcom);
+        this.admin.setValue(0,5);
+        this.admin.begin();
     }
 
     /**

@@ -1,6 +1,6 @@
 {
 	"groups":[{
-			"keys":"description_json,blueBoat_png,blueBox_png,blueHeart_png,redBoat_png,redBox_png,redHeart_png",
+			"keys":"description_json,blueBoat_png,blueBox_png,blueHeart_png,redBoat_png,redBox_png,redHeart_png,blueBoatDown_png,redBoatDown_png",
 			"name":"preload"
 		}],
 	"resources":[
@@ -38,6 +38,16 @@
 			"name":"redHeart_png",
 			"type":"image",
 			"url":"assets/redHeart.png"
+		},
+		{
+			"name":"blueBoatDown_png",
+			"type":"image",
+			"url":"assets/blueBoatDown.png"
+		},
+		{
+			"name":"redBoatDown_png",
+			"type":"image",
+			"url":"assets/redBoatDown.png"
 		}
 	]
 }

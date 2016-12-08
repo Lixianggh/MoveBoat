@@ -11,7 +11,9 @@ var game_file_list = [
 	"bin-debug/LoadingUI.js",
 	"bin-debug/Main.js",
 	"bin-debug/Window/Admin.js",
+	"bin-debug/Window/Bar.js",
 	"bin-debug/Window/Boat.js",
+	"bin-debug/Window/Welcom.js",
 	//----auto game_file_list end----
 ];
 
