@@ -20,11 +20,20 @@ var Welcom = (function (_super) {
         title.width = 640;
         title.height = 70;
         title.size = 58;
-        title.text = "游戏名";
+        title.text = "双船快划";
         title.textAlign = "center";
         title.x = 0;
         title.y = 200;
         this.addChild(title);
+        var listion = new egret.TextField();
+        listion.width = 560;
+        listion.height = 150;
+        listion.size = 38;
+        listion.text = "点击控制小船左右移动，躲避盒子，撞击心";
+        listion.textAlign = "center";
+        listion.x = 40;
+        listion.y = 350;
+        this.addChild(listion);
         this.herdBtn = new egret.TextField();
         this.herdBtn.width = 640;
         this.herdBtn.height = 50;
@@ -32,7 +41,7 @@ var Welcom = (function (_super) {
         this.herdBtn.text = "困难";
         this.herdBtn.textAlign = "center";
         this.herdBtn.x = 0;
-        this.herdBtn.y = 450;
+        this.herdBtn.y = 500;
         this.addChild(this.herdBtn);
         this.medioBtn = new egret.TextField();
         this.medioBtn.width = 640;
@@ -41,7 +50,7 @@ var Welcom = (function (_super) {
         this.medioBtn.text = "中等";
         this.medioBtn.textAlign = "center";
         this.medioBtn.x = 0;
-        this.medioBtn.y = 550;
+        this.medioBtn.y = 600;
         this.addChild(this.medioBtn);
         this.easyBtn = new egret.TextField();
         this.easyBtn.width = 640;
@@ -50,7 +59,7 @@ var Welcom = (function (_super) {
         this.easyBtn.text = "简单";
         this.easyBtn.textAlign = "center";
         this.easyBtn.x = 0;
-        this.easyBtn.y = 650;
+        this.easyBtn.y = 700;
         this.addChild(this.easyBtn);
     };
     p.begin = function () {

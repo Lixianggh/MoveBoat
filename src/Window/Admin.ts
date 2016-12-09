@@ -122,7 +122,7 @@ class Admin extends egret.Sprite{
         this.rightTouchBar.addEventListener(egret.TouchEvent.TOUCH_TAP,this.rightTouch,this);
         
         this.barArray = new Array();
-        for(var i=0 ; i < 4 ; i++){
+        for(var i=0 ; i < 5 ; i++){
             var bar: Bar = new Bar();
             this.barArray[i] = bar;
             this.addChild(bar);
@@ -248,14 +248,14 @@ class Admin extends egret.Sprite{
             if(state == 1){ //is work
                if(barRoad == 1){    //left
                    if(this.boatState == 1){ //top
-                       if(bar.x == 38 && this.blueBoat.x < 118 && bar.y < 250 && bar.y > -30) { //left left and bingo
+                       if(bar.x == 38 && this.blueBoat.x < 118 && bar.y < 250 && bar.y > -0) { //left left and bingo
                            if(barType == 1){
                               console.log("top blue left box"); 
                               this.lose();
                            }else{
                                bar.setState(0);
                            }
-                       } else if(bar.x == 194 && this.blueBoat.x > 38 && this.blueBoat.x < 274 && bar.y < 250 && bar.y > -30) {  //left right and bingo
+                       } else if(bar.x == 194 && this.blueBoat.x > 38 && this.blueBoat.x < 274 && bar.y < 250 && bar.y > 0) {  //left right and bingo
                            if(barType == 1) {
                                console.log("top blue left box");
                                this.lose();
@@ -264,14 +264,14 @@ class Admin extends egret.Sprite{
                            }
                        }
                    }else{   //down
-                       if(bar.x == 38 && this.blueBoat.x < 118 && bar.y < 1030 && bar.y > 760){ //left left and bingo
+                       if(bar.x == 38 && this.blueBoat.x < 118 && bar.y < 1000 && bar.y > 760){ //left left and bingo
                            if(barType == 1) {
                                console.log("top blue left box");
                                this.lose();
                            } else {
                                bar.setState(0);
                            }
-                       } else if(bar.x == 194 && this.blueBoat.x > 38 && this.blueBoat.x < 274 && bar.y < 1030 && bar.y > 760){  //left right and bingo
+                       } else if(bar.x == 194 && this.blueBoat.x > 38 && this.blueBoat.x < 274 && bar.y < 1000 && bar.y > 760){  //left right and bingo
                            if(barType == 1) {
                                console.log("top blue left box");
                                this.lose();
@@ -282,14 +282,14 @@ class Admin extends egret.Sprite{
                    }
                }else if(barRoad == 2){  //right   
                    if(this.boatState == 2) { //top
-                       if(bar.x == 358 && this.redBoat.x < 438 && bar.y < 250 && bar.y > -30) { //left left and bingo
+                       if(bar.x == 358 && this.redBoat.x < 438 && bar.y < 250 && bar.y > 0) { //left left and bingo
                            if(barType == 1) {
                                console.log("top blue left box");
                                this.lose();
                            } else {
                                bar.setState(0);
                            }
-                       } else if(bar.x == 514 && this.redBoat.x > 358 && this.redBoat.x < 594 && bar.y < 250 && bar.y > -30) {  //left right and bingo
+                       } else if(bar.x == 514 && this.redBoat.x > 358 && this.redBoat.x < 594 && bar.y < 250 && bar.y > 0) {  //left right and bingo
                            if(barType == 1) {
                                console.log("top blue left box");
                                this.lose();
@@ -298,14 +298,14 @@ class Admin extends egret.Sprite{
                            }
                        }
                    } else {   //down
-                       if(bar.x == 358 && this.redBoat.x < 438 && bar.y < 1030 && bar.y > 760) { //left left and bingo
+                       if(bar.x == 358 && this.redBoat.x < 438 && bar.y < 1000 && bar.y > 760) { //left left and bingo
                            if(barType == 1) {
                                console.log("top blue left box");
                                this.lose();
                            } else {
                                bar.setState(0);
                            }
-                       } else if(bar.x == 514 && this.redBoat.x > 358 && this.redBoat.x < 594 && bar.y < 1030 && bar.y > 760) {  //left right and bingo
+                       } else if(bar.x == 514 && this.redBoat.x > 358 && this.redBoat.x < 594 && bar.y < 1000 && bar.y > 760) {  //left right and bingo
                            if(barType == 1) {
                                console.log("top blue left box");
                                this.lose();

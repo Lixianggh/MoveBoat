@@ -69,6 +69,7 @@ class Main extends egret.DisplayObjectContainer {
     private onResourceLoadError(event:RES.ResourceEvent):void {
         //TODO
         console.warn("Group:" + event.groupName + " has failed to load");
+        
         //忽略加载失败的项目
         //Ignore the loading failed projects
         this.onResourceLoadComplete(event);
@@ -93,12 +94,17 @@ class Main extends egret.DisplayObjectContainer {
         this.lose.x = 0;
         this.lose.y = 0;
         this.stage.addChild(this.lose);
+        var type = evt._type;
+        var goNum = evt._goNum;
+        this.lose.setValue(type , goNum);
         
         this.lose.beginBtn.addEventListener(egret.TouchEvent.TOUCH_TAP,this.goAgain,this);
     }
     
     private goAgain(){
         this.stage.removeChild(this.lose);
+        this.stage.removeChild(this.admin);
+        document.title = "双船快划";
         this.createGameScene();
     }
     /**

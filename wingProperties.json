@@ -48,6 +48,11 @@
 					"isFolder":false,
 					"key":"redBoatDown_png",
 					"name":"redBoatDown_png"
+				},
+				{
+					"isFolder":false,
+					"key":"icon_png",
+					"name":"icon_png"
 				}
 			]
 		}

@@ -76,10 +76,15 @@ var Main = (function (_super) {
         this.lose.x = 0;
         this.lose.y = 0;
         this.stage.addChild(this.lose);
+        var type = evt._type;
+        var goNum = evt._goNum;
+        this.lose.setValue(type, goNum);
         this.lose.beginBtn.addEventListener(egret.TouchEvent.TOUCH_TAP, this.goAgain, this);
     };
     p.goAgain = function () {
         this.stage.removeChild(this.lose);
+        this.stage.removeChild(this.admin);
+        document.title = "双船快划";
         this.createGameScene();
     };
     /**

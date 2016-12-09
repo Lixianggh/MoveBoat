@@ -17,12 +17,12 @@ var Lose = (function (_super) {
         backgroundView.graphics.endFill();
         this.addChild(backgroundView);
         this.title = new egret.TextField();
-        this.title.width = 640;
-        this.title.height = 70;
+        this.title.width = 560;
+        this.title.height = 200;
         this.title.size = 58;
         this.title.text = "鼓励语";
         this.title.textAlign = "center";
-        this.title.x = 0;
+        this.title.x = 40;
         this.title.y = 200;
         this.addChild(this.title);
         this.beginBtn = new egret.TextField();
@@ -37,6 +37,18 @@ var Lose = (function (_super) {
         this.beginBtn.touchEnabled = true;
     };
     p.setValue = function (type, goNum) {
+        var str = '';
+        if (type == 5) {
+            str = "简单";
+        }
+        else if (type == 8) {
+            str = "中等";
+        }
+        else if (type == 10) {
+            str = "困难";
+        }
+        document.title = "我在" + str + "难度下跑了 " + goNum + "分！ 快来挑战我！";
+        this.title.text = "您在" + str + "难度下跑了 " + goNum + "分！ 再接再厉！";
     };
     return Lose;
 }(egret.Sprite));

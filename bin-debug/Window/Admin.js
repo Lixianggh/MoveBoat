@@ -86,7 +86,7 @@ var Admin = (function (_super) {
         //this.rightTouchBar.touchEnabled = true;
         this.rightTouchBar.addEventListener(egret.TouchEvent.TOUCH_TAP, this.rightTouch, this);
         this.barArray = new Array();
-        for (var i = 0; i < 4; i++) {
+        for (var i = 0; i < 5; i++) {
             var bar = new Bar();
             this.barArray[i] = bar;
             this.addChild(bar);
@@ -217,7 +217,7 @@ var Admin = (function (_super) {
             if (state == 1) {
                 if (barRoad == 1) {
                     if (this.boatState == 1) {
-                        if (bar.x == 38 && this.blueBoat.x < 118 && bar.y < 250 && bar.y > -30) {
+                        if (bar.x == 38 && this.blueBoat.x < 118 && bar.y < 250 && bar.y > -0) {
                             if (barType == 1) {
                                 console.log("top blue left box");
                                 this.lose();
@@ -226,7 +226,7 @@ var Admin = (function (_super) {
                                 bar.setState(0);
                             }
                         }
-                        else if (bar.x == 194 && this.blueBoat.x > 38 && this.blueBoat.x < 274 && bar.y < 250 && bar.y > -30) {
+                        else if (bar.x == 194 && this.blueBoat.x > 38 && this.blueBoat.x < 274 && bar.y < 250 && bar.y > 0) {
                             if (barType == 1) {
                                 console.log("top blue left box");
                                 this.lose();
@@ -237,7 +237,7 @@ var Admin = (function (_super) {
                         }
                     }
                     else {
-                        if (bar.x == 38 && this.blueBoat.x < 118 && bar.y < 1030 && bar.y > 760) {
+                        if (bar.x == 38 && this.blueBoat.x < 118 && bar.y < 1000 && bar.y > 760) {
                             if (barType == 1) {
                                 console.log("top blue left box");
                                 this.lose();
@@ -246,7 +246,7 @@ var Admin = (function (_super) {
                                 bar.setState(0);
                             }
                         }
-                        else if (bar.x == 194 && this.blueBoat.x > 38 && this.blueBoat.x < 274 && bar.y < 1030 && bar.y > 760) {
+                        else if (bar.x == 194 && this.blueBoat.x > 38 && this.blueBoat.x < 274 && bar.y < 1000 && bar.y > 760) {
                             if (barType == 1) {
                                 console.log("top blue left box");
                                 this.lose();
@@ -259,7 +259,7 @@ var Admin = (function (_super) {
                 }
                 else if (barRoad == 2) {
                     if (this.boatState == 2) {
-                        if (bar.x == 358 && this.redBoat.x < 438 && bar.y < 250 && bar.y > -30) {
+                        if (bar.x == 358 && this.redBoat.x < 438 && bar.y < 250 && bar.y > 0) {
                             if (barType == 1) {
                                 console.log("top blue left box");
                                 this.lose();
@@ -268,7 +268,7 @@ var Admin = (function (_super) {
                                 bar.setState(0);
                             }
                         }
-                        else if (bar.x == 514 && this.redBoat.x > 358 && this.redBoat.x < 594 && bar.y < 250 && bar.y > -30) {
+                        else if (bar.x == 514 && this.redBoat.x > 358 && this.redBoat.x < 594 && bar.y < 250 && bar.y > 0) {
                             if (barType == 1) {
                                 console.log("top blue left box");
                                 this.lose();
@@ -279,7 +279,7 @@ var Admin = (function (_super) {
                         }
                     }
                     else {
-                        if (bar.x == 358 && this.redBoat.x < 438 && bar.y < 1030 && bar.y > 760) {
+                        if (bar.x == 358 && this.redBoat.x < 438 && bar.y < 1000 && bar.y > 760) {
                             if (barType == 1) {
                                 console.log("top blue left box");
                                 this.lose();
@@ -288,7 +288,7 @@ var Admin = (function (_super) {
                                 bar.setState(0);
                             }
                         }
-                        else if (bar.x == 514 && this.redBoat.x > 358 && this.redBoat.x < 594 && bar.y < 1030 && bar.y > 760) {
+                        else if (bar.x == 514 && this.redBoat.x > 358 && this.redBoat.x < 594 && bar.y < 1000 && bar.y > 760) {
                             if (barType == 1) {
                                 console.log("top blue left box");
                                 this.lose();
